@@ -1,0 +1,29 @@
+
+<h4>add new item to menu</h4>
+<form id="food_form" action="/foods" method="post">
+  <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+  <div class="form-row">
+    <div class="form-group col-md-2">
+      <input type="text" id="food_name" name="food[name]" class="form-control" placeholder="Item Name">
+    </div>
+    <div class="form-group col-md-2">
+      <input type="text" id="food_description" name="food[description]" class="form-control" placeholder="Add Description">
+    </div>
+    <div class="form-group col-md-2">
+      <input type="number" min="0.00" step="any" id="food_price" name="food[price]" class="form-control" placeholder="Enter price">
+    </div>
+    <select id="food_course" name="food[course]" class="custom-select form-group col-md-2">
+      <option value="" disabled selected>select category</option>
+      <option value="Appetizer">Appetizer</option>
+      <option value="Entree">Entree</option>
+      <option value="Dessert">Dessert</option>
+      <option value="Sides">Sides</option>
+    </select>
+  </div>
+  <% if flash[:food_error] %>
+    <% flash[:food_error].each do |msg| %>
+      <p class="text-warning"><i><%=msg%></p></i>
+    <% end %>
+  <% end %>
+  <input type="submit" class="btn btn-primary" value="Add Item">
+</form>

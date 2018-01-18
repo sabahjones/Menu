@@ -1,0 +1,31 @@
+<div class="container-fluid menu_partials">
+  <h3><%="#{@entrees.category}s"%></h3>
+  <div class="container-fluid row no-gutters">
+    <br>
+    <% @entrees.foods.each do |entree| %>
+    <div class="col-sm-3"><%=entree.name%></div>
+    <div class="col-sm-6"><%=entree.description%></div>
+    <div class="col-sm-2"><%=number_to_currency(entree.price)%></div>
+    <div class="col-1 container row no-gutters">
+      <% if @user%>
+        <% if @user.admin %> <!--Admin below -->
+        <div class="col-6 no-gutters">
+              <form action="/foods/<%=entree.id%>/edit" method="get">
+              <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+              <input type="submit" class="btn btn-primary btn-sm" value="edit">
+              </form>
+            </div>
+            <div class="col-6 no-gutters">
+              <form action="/foods/<%=entree.id%>" method="post">
+              <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+              <input type="hidden" value="delete" name="_method">
+              <input type="submit" class="btn btn-danger btn-sm" value="delete">
+              </form>
+            </div>
+          <%end%><!-- @user.admin -->
+      <%end%><!-- @user -->
+    </div>
+    <div class="w-100"></div>
+  <%end%><!-- end @entrees.foods loop -->
+</div>
+</div>

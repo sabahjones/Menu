@@ -1,0 +1,26 @@
+<h5>Register:</h5>
+<br>
+<form action="/users/create" method="post">
+  <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+  <div class="form-group">
+    <input type="text" id="user_name" name="user[name]" class="form-control" placeholder="Name">
+  </div>
+  <div class="form-group">
+    <input type="text" id="user_email" name="user[email]" class="form-control" placeholder="Email">
+  </div>
+  <div class="form-group">
+    <input type="password" id="user_password" name="user[password]" class="form-control" placeholder="Password">
+  </div>
+  <div class="form-group">
+    <input type="password" id="user_confirm_pw" name="user[confirm_pw]" class="form-control" placeholder="Confirm Password">
+  </div>
+  <div class="form-group">
+    <input type="password" id="admin_code" name="admin_code"  class="form-control"  placeholder="Administrator Code">
+  </div>
+  <% if flash[:reg_errors]%>
+  <% flash[:reg_errors].each do |error|%>
+  <p class="text-warning"><i><%=error%></i></p>
+  <% end %>
+  <% end %>
+  <button type="submit" class="btn btn-primary">Create Account!</button>
+</form>

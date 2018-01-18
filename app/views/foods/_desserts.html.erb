@@ -1,0 +1,30 @@
+<div class="container-fluid menu_partials">
+  <h3><%="#{@desserts.category}s"%></h3>
+  <div class="container-fluid row no-gutters">
+    <% @desserts.foods.each do |dessert| %>
+    <div class="col-3"><%=dessert.name%></div>
+    <div class="col-6"><%=dessert.description%></div>
+    <div class="col-2"><%=number_to_currency(dessert.price)%></div>
+    <div class="col-1 container row no-gutters">
+      <% if @user%>
+        <% if @user.admin %> <!--Admin below -->
+          <div class="col-6 no-gutters">
+              <form action="/foods/<%=dessert.id%>/edit" method="get">
+              <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+              <input type="submit" class="btn btn-primary btn-sm" value="edit">
+              </form>
+            </div>
+            <div class="col-6 no-gutters">
+              <form action="/foods/<%=dessert.id%>" method="post">
+              <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+              <input type="hidden" value="delete" name="_method">
+              <input type="submit" class="btn btn-danger btn-sm" value="delete">
+              </form>
+            </div>
+          <%end%><!-- @user.admin -->
+      <%end%><!-- @user -->
+    </div>
+    <div class="w-100"></div>
+  <%end%><!-- end @desserts.foods loop -->
+</div>
+</div>

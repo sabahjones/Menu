@@ -1,0 +1,18 @@
+
+<div id="receipt_window" class="side_windows">
+<h4>Thank you for your order!</h4>
+<br>
+Your order <b>#<%=@order_receipt.order_num%></b> was placed at <%=@order_receipt.created_at.strftime("%I:%M%p").downcase%>
+<br>
+<br>
+<ol>
+<%@order_receipt.foods.each do |item| %>
+  <li><i>&nbsp;<%=item.name%></i></li>
+<%end%>
+</ol>
+
+&emsp;&nbsp; Total: <%=number_to_currency(@order_receipt.total + (@order_receipt.total * @order_receipt.tip/100))%>
+<br>
+<br>
+<p>This order will be ready for pick up at <%=(@order_receipt.created_at + (@order_receipt.foods.count * 5 * 60)).strftime("%I:%M %p").downcase%></p>
+</div>

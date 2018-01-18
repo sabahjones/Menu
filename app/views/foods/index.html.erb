@@ -1,0 +1,73 @@
+<div id="img_div" class="container-fluid">
+  <div class="row">
+    <div id="menu_wrap" class="col-7">
+        <h2><center>Menu</center></h2>
+        <% if session[:order] %>
+          <!-- Ordering menu -->
+          <%if @apps %><%= render "/orders/order_apps" %><% end %>
+          <%if @entrees %><%= render "/orders/order_entrees" %><% end %>
+          <%if @desserts %><%= render "/orders/order_desserts" %><% end %>
+          <%if @sides %><%= render "/orders/order_sides" %><% end %>
+        <% else %>
+          <!-- Reg menu -->
+          <%if @apps %><%= render "apps" %><% end %>
+          <%if @entrees %><%= render "entrees" %><% end %>
+          <%if @desserts %><%= render "desserts" %><% end %>
+          <%if @sides %><%= render "sides" %><% end %>
+        <% end %>
+          <!-- end Reg menu -->
+    </div>
+
+    <div id="sidebar" class="col-3"><!-- begin sidebar -->
+      <% if flash[:notice] %>
+        <% flash[:notice].each do |msg| %>
+          <p class="text-success"><i><%=msg%></i></p>
+        <% end %>
+      <% end %>
+
+      <!-- render login and register partials -->
+      <div id="signin">
+        <% if flash[:sign_on] == true %><%= render "/sessions/login" %><%end%>
+        <% if flash[:register] == true %><%= render "/sessions/register" %><%end%>
+      </div>
+      <!-- end login and register partials -->
+
+      <!-- order receipt partial-->
+      <% if session[:receipt] %>
+        <%= render "/orders/receipt"%>
+      <% end %>
+      <!-- end order receipt -->
+
+      <% if session[:id] && session[:order] == nil && !@user.admin %>
+        <br>
+        <center><a href="/orders/new"><button class="btn btn-warning">Click here to begin a new order</button></a></center>
+      <% end %>
+
+        <!-- order window partial-->
+        <div id="order">
+          <% if session[:order] %>
+            <%= render "/orders/order_window" %>
+          <% end %>
+        </div>
+        <!-- end order window-->
+    </div><!-- end sidebar-->
+
+    <% if !session[:order] %><div class="col-2"></div><% end %>
+  </div><!-- encapsulate menu and sidebar -->
+</div><!-- end main container-->
+
+<!-- admin options begin -->
+<div class="admin container">
+  <% if @user %>
+    <% if flash[:edit] == true %>
+      <%= render "edit" %>
+    <% end %>
+    <% if @user.admin %>
+    <br><br>
+    <div class="column-fluid">
+      <%= render "form" %>
+    </div>
+    <% end %>
+  <% end %>
+</div>
+<br><br><br><br>

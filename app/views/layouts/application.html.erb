@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>TableMenu</title>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag 'application', media: "https://fonts.googleapis.com/css?family=Great+Vibes", 'data-turbolinks-track' => true %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= csrf_meta_tags %>
+</head>
+<body>
+  <div id="top_banner" class="container-fluid">
+    <div id="banner_img" class="row align-items-center">
+      <div class="col-2">
+      </div>
+      <div class="col-8 ">
+        <center><h1>Le Cafe Seine</h1></center>
+      </div>
+      <div class="col-2">
+        <br>
+        <% if @user %>
+        <i>Welcome <%= @user.name %>!</i>
+        &emsp;
+        <% end %>
+        <% if session[:id] %>
+        <a href="/sessions/delete"><button type="button" class="btn btn-primary btn-sm">logout</button></a>
+        <% else %>
+        <p><a href="/sessions/new"><%="Sign in"%></a> / <a href="/sessions/register"><%="Register"%></a></p>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div id="main_background">
+    <%= yield %>
+  </div>
+</body>
+</html>

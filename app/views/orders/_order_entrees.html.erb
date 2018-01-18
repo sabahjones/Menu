@@ -1,0 +1,18 @@
+<div class="container"><h3><%="#{@entrees.category}s"%></h3>
+  <div class="row no-gutters">
+    <% @entrees.foods.each do |entree| %>
+    <div class="col-3"><%=entree.name%></div>
+    <div class="col-6"><%=entree.description%></div>
+    <div class="col-2"><%=number_to_currency(entree.price)%></div>
+    <div class="col-1">
+      <form action="/orders" method="post">
+      <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+      <input type="hidden" value="<%=entree.id%>" name="food_id">
+      <input type="submit" class="btn btn-primary btn-sm" value="order">
+      </form>
+    </div>
+    <div class="w-100"></div>
+    <%end%><!-- end @entrees.foods loop -->
+</div>
+</div>
+<br>

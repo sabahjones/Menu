@@ -1,0 +1,58 @@
+<div id="order_window" >
+  <h5>Click "order" button on menu to purchase items</h5>
+  <% if @order.length > 0 %>
+  <div class="side_windows">
+    <div id="order_window2">
+      <form id="tip_form" action="orders/update" method="post">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">Quantity</th>
+              <th scope="col">Item</th>
+              <th scope="col">Price</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @hash.each_index do |item| %>
+            <tr>
+              <td><%=@hash[item][:quantity]%></td>
+              <td><%=@hash[item][:name]%></td>
+              <td><%=number_to_currency(@hash[item][:total])%></td>
+              <td><a href="/orders/<%=@hash[item][:id]%>/edit"><button class="btn btn-danger btn-sm">-</button></td></a>
+            </tr>
+            <%end%>
+          </tbody>
+          <tr><td></td><td>optional tip:</td>
+            <td>
+              <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+              <select name="tip" form="tip_form">
+                <% if session[:tip] %>
+                <option value="<%=@tip%>"><%=@tip%>%</option>
+                <%end%>
+                <option value=0>0</option>
+                <option value=10>10%</option>
+                <option value=15>15%</option>
+                <option value=20>20%</option>
+              </select>
+            </td>
+            <td></td></tr>
+            <tr><td></td><td></td><td><input class="btn btn-primary btn-sm" type="submit" value="recalculate"></td></tr>
+            <tr><td></td><td>Total</td><td><%=number_to_currency(@total)%></td></tr>
+          </table>
+        </form>
+        <% if flash[:purchase_errors] %>
+        <% if flash[:purchase_errors].each do |err_msg| %>
+        <p><%=err_msg%></p>
+        <% end %>
+        <% end %>
+        <% end %>
+        <center>
+        <a href="/orders/cancel"><button class="btn btn-warning">Cancel Order</button></a>&emsp;
+        <a href="/orders/save"><button class="btn btn-primary">Complete Order</button></a>
+        </center>
+      </form>
+    </div>
+  </div>
+  <% else %>
+  <% end %><!-- order window logic -->
+</div>

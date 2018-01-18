@@ -1,0 +1,65 @@
+<br>
+<h2>Create an account:</h2>
+
+<!-- messages -->
+<% if flash[:notice] %>
+  <p><%=flash[:notice]%></p>
+<% end %>
+
+<% if flash[:message] %>
+  <% flash[:message].each do |msg| %>
+    <p><h3><i><%=msg%></h3></i></p>
+  <%end%>
+<%end%>
+
+<% if flash[:errors] %>
+  <% flash[:errors].each do |msg| %>
+    <p><h3><i><%=msg%></h3></i></p>
+  <%end%>
+<%end%>
+
+<!-- end messages -->
+
+<br>
+<form action="/users/create" method="post">
+  <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+  <div class="form-row">
+    <div class="form-group col-md-2">
+      <input type="text" id="user_name" name="user[name]" class="form-control" placeholder="Name">
+    </div>
+    <div class="form-group col-md-2">
+      <input type="text" id="user_email" name="user[email]" class="form-control" placeholder="Email">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-2">
+      <input type="password" id="user_password" name="user[password]" class="form-control" placeholder="Password">
+    </div>
+    <div class="form-group col-md-2">
+      <input type="password" id="user_confirm_pw" name="user[confirm_pw]" class="form-control" placeholder="Confirm Password">
+    </div>
+  </div>
+  <div class="form-row">
+    <div class="form-group col-md-2">
+      <input type="password" id="admin_code" name="admin_code"  class="form-control"  placeholder="Administrator Code">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Create</button>
+</form>
+
+<br>
+<h2>Sign in:</h2>
+<br>
+<form action="/users/login" method="post">
+  <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+  <div class="form-row">
+    <div class="form-group col-md-2">
+      <input type="text" id="login_email" name="email" class="form-control" placeholder="Email">
+    </div>
+    <div class="form-group col-md-2">
+      <input type="password" id="login_password" name="password" class="form-control" placeholder="Password">
+    </div>
+  </div>
+  <button type="submit" class="btn btn-primary">Sign In</button>
+</form>
+<br>

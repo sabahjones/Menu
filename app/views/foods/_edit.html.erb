@@ -1,0 +1,37 @@
+<br><br>
+<h4>Edit item</h4>
+<form id="edit_form" action="/foods/<%=@edit.id%>" method="post">
+  <input type="hidden" name="authenticity_token" value="<%=form_authenticity_token%>">
+  <input type="hidden" value="patch" name="_method">
+  <div class="form-row">
+    <div class="form-group col-md-2">
+      <input type="text" id="edit_name" name="food[name]" class="form-control" value="<%=@edit.name%>">
+    </div>
+    <div class="form-group col-md-2">
+      <input type="text" id="edit_description" name="food[description]" class="form-control" value="<%=@edit.description%>">
+    </div>
+    <div class="form-group col-md-2">
+      <input type="number" min="0.00" step="any" id="edit_price" name="food[price]" class="form-control" value="<%=@edit.price%>">
+    </div>
+    <select id="food_course" name="food[course]" class="custom-select form-group col-md-2">
+      <option value="<%=@edit.course.category%>"><%=@edit.course.category%></option>
+      <option value="Appetizer">Appetizer</option>
+      <option value="Entree">Entree</option>
+      <option value="Dessert">Dessert</option>
+      <option value="Sides">Sides</option>
+    </select>
+  </div>
+  <% if flash[:edit_errors] %>
+    <% flash[:edit_errors].each do |msg| %>
+      <p class="text-warning"><i><%=msg%></p></i>
+    <% end %>
+  <% end %>
+  <div class="form-row">
+    <div class="form-group col">
+      <input type="submit" class="btn btn-primary" value="Update Item">
+      <a href="/"><button class="btn btn-warning">Cancel</button></a>
+    </div>
+    <!-- <div class="form-group col-md-2">
+    </div> -->
+  </div>
+</form>

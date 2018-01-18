@@ -1,0 +1,127 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any styles
+ * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
+ * file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+
+@import "bootstrap";
+
+*  {
+  margin: 0px;
+  padding: 0px;
+  border: 0px;
+}
+
+
+#top_banner {
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  height: 100px;
+  margin: 5px 0 0 0;
+  border: solid black 1px;
+  padding-top: 20px;
+  font-family: 'Great Vibes', cursive;
+
+}
+
+#img_div {
+  background-image: url("menu_background.png");
+  height: 1000px;
+}
+
+#left_side {
+  background-color: lightblue;
+}
+
+#middle {
+  background-color: lightblue;
+}
+
+.btn-sm {
+  padding: 0.3rem;
+  font-size: .70rem;
+  line-height: 1;
+  border-radius: 0.2rem;
+  font-family: 'initial';
+}
+
+#menu_wrap {
+  // width: 55%;
+  height: 800px;
+  overflow: scroll;
+  background-color: beige;
+  border: solid black 1px;
+  border-radius: 10%;
+  padding: 40px 10px 80px 20px;
+  margin: 5% 0 0 5%;
+  background-image: url("https://www.transparenttextures.com/patterns/binding-light.png");
+  font-family: 'Great Vibes', cursive;
+}
+
+#menu_wrap div {
+  background-color: beige;
+  background-image: url("https://www.transparenttextures.com/patterns/binding-light.png");
+}
+
+.menu_partials {
+  border-radius: 20%;
+  padding: 15px 10px 15px 10px;
+}
+
+#sidebar {
+  font-family: calibri;
+  border-radius: 7%;
+  margin: 5% 0% 0 5%;
+
+}
+
+#signin h5 {
+  color: white;
+  text-shadow: 1px 1px gray, -1px -1px #444
+}
+
+#order h5 {
+  color: white;
+}
+
+#order_window {
+  margin-top: 20px;
+}
+
+#receipt_window {
+  margin-top: 5%;
+  border: solid black 1px;
+  padding: 25px;
+}
+
+.side_windows {
+  border-radius: 7%;
+  padding: 15px;
+  background-color: beige;
+  //background-image: url("https://www.transparenttextures.com/patterns/binding-light.png");
+}
+
+.edit {
+  color: white;
+  background-color: blue;
+}
+
+.delete {
+  color: white;
+  background-color: red;
+}
+
+.admin {
+  font-family: calibri;
+}
